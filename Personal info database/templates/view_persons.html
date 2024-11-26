@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block title %}View Personal Info{% endblock %}
+
+{% block content %}
+<h1>Personal Information</h1>
+<table>
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Age</th>
+        <th>Contact</th>
+        <th>Action</th>
+    </tr>
+    {% for person in persons %}
+    <tr>
+        <td>{{ person[0] }}</td>
+        <td>{{ person[1] }}</td>
+        <td>{{ person[2] }}</td>
+        <td>{{ person[3] }}</td>
+        <td>
+            <form method="POST" action="{{ url_for('delete_person', person_id=person[0]) }}">
+                <button type="submit">Delete</button>
+            </form>
+        </td>
+    </tr>
+    {% endfor %}
+</table>
+<a href="{{ url_for('dashboard') }}">Back to Dashboard</a>
+{% endblock %}
